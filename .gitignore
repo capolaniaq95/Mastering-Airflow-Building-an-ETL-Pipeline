@@ -1,1 +1,12 @@
 .env
+
+/airflow/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.json
+
+/data_lake/
