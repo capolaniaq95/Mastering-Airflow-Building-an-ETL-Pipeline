@@ -2,6 +2,7 @@
 
 /airflow/
 __pycache__/
+/logs/
 *.pyc
 *.pyo
 *.pyd
