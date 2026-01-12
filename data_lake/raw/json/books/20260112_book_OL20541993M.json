@@ -1,0 +1,51 @@
+{
+    "publishers": [
+        "W. Blackwood and Sons"
+    ],
+    "source_records": [
+        "ia:lostpibrochando00munrgoog",
+        "ia:lostpibrochothe00munr"
+    ],
+    "title": "The Lost Pibroch: And Other Sheiling Stories",
+    "number_of_pages": 298,
+    "covers": [
+        6718926
+    ],
+    "publish_date": "1899",
+    "key": "/books/OL20541993M",
+    "authors": [
+        {
+            "key": "/authors/OL5992006A"
+        }
+    ],
+    "ocaid": "lostpibrochando00munrgoog",
+    "oclc_numbers": [
+        "6105844"
+    ],
+    "works": [
+        {
+            "key": "/works/OL13095943W"
+        }
+    ],
+    "type": {
+        "key": "/type/edition"
+    },
+    "lc_classifications": [
+        "PR5101 M4 L619"
+    ],
+    "languages": [
+        {
+            "key": "/languages/eng"
+        }
+    ],
+    "latest_revision": 6,
+    "revision": 6,
+    "created": {
+        "type": "/type/datetime",
+        "value": "2008-10-27T07:58:45.685533"
+    },
+    "last_modified": {
+        "type": "/type/datetime",
+        "value": "2025-05-07T03:59:08.839984"
+    }
+}
