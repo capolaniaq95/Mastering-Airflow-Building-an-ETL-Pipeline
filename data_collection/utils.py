@@ -1,5 +1,7 @@
 import json
 from typing import Dict, Union, List
+import pandas as pd
+
 
 def save_data(file_content: Union[List[Dict], Dict, List, str], file_name: str, 
              zone: str = "raw", context:str = "books", file_type:str = "csv"):
@@ -18,9 +20,15 @@ def save_data(file_content: Union[List[Dict], Dict, List, str], file_name: str,
         file_type: str
             The type of file to save. Default is "csv".
     """
-    directory = f"../data_lake/{zone}/{file_type}/{context}/"
-
-    with open(f"{directory}{file_name}", "w", encoding="utf-8") as file:
-        json.dump(file_content, file, ensure_ascii=False, indent=4)
-
-
+    file_path = f"../data_lake/{zone}/{file_type}/{context}/{file_name}"
+    if file_type == "json":
+        with open(file_path, "w", encoding="utf-8") as file:
+            json.dump(file_content, file, ensure_ascii=False, indent=4)
+    elif file_type == "csv":
+        with open(file_path, "w", encoding="utf-8") as file:
+            df = pd.DataFrame(file_content)
+            df.to_csv(file, index=False)
+    elif file_type == "parquet":
+        with open(file_path, "wb") as file:
+            df = pd.DataFrame(file_content)
+            df.to_parquet(file, index=False)
