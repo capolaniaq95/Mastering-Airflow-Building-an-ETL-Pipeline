@@ -3,14 +3,14 @@ from typing import Dict, Union, List
 import pandas as pd
 
 
-def save_data(file_content: Union[List[Dict], Dict, List, str], file_name: str, 
+def save_data(file_content: Union[List[Dict], Dict, List, str, pd.DataFrame], file_name: str, 
              zone: str = "raw", context:str = "books", file_type:str = "csv"):
     """
     Function that receives the dictionary containing the contents of a book and saves it in a JSON file
 
     Args: 
-        file_content: Union[List[Dict], Dict, List, str]
-            The content to be saved in the file. It can be a list of dictionaries, a single dictionary, a list, or a string.
+        file_content: Union[List[Dict], Dict, List, str, dataframe]
+            The content to be saved in the file. It can be a list of dictionaries, a single dictionary, a list, a string, or a pandas DataFrame.
         file_name: str
             The name of the file where the content will be saved.
         zone: str
