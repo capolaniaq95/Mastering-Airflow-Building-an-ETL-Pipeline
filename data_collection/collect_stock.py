@@ -19,7 +19,6 @@ def collect_stock_data(stock_ticker: str):
     try:
         df = ticker_data.history(interval="1mo", start=start_date, end=end_date)
         df['date'] = datetime.now().strftime("%Y-%m-%d")
-        df.reset_index(inplace=True)
         if len(df) == 1:
             return df
     except Exception as e:

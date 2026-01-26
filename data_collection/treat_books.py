@@ -8,8 +8,8 @@ from utils import save_data
 from datetime import datetime
 
 
-
 list_books = os.listdir("../data_lake/raw/json/books")
+list_stocks = os.listdir("../data_lake/raw/csv/stocks")
 
 books_collected = []
 
@@ -82,5 +82,60 @@ save_data(file_content=books_collected,
           file_name="books.parquet", 
           zone="refined", context="books", 
           file_type="parquet")
+
+columns = ['collected_date', 'ticker_name', 'date', 
+           'open', 'high', 'low', 'close', 'volume']
+stocks_collected = []
+
+for stock in list_stocks:
+
+    df = pd.read_csv(f"../data_lake/raw/csv/stocks/{stock}")
+    date = df['date'][0]
+    date = datetime.strptime(df["date"][0], "%Y-%m-%d")
+    open_variable = df['Open'][0]
+    if not isinstance(open_variable, float):
+        open_variable = float(open_variable)
+    
+    high = df['High'][0]
+    if not isinstance(high, float):
+        high = float(high)
+    
+    low = df['Low'][0]
+    if not isinstance(low, float):
+        low = float(low)
+    
+    close = df['Close'][0]
+    if not isinstance(close, float):
+        close = float(close)
+    
+    volume = df['Volume'][0]
+    if not isinstance(volume, int):
+        volume = int(volume)
+    
+    ticker_name = stock.split(".")[0].split("_")[2]
+    print(ticker_name)
+    collect_date = stock.split(".")[0].split("_")[0]
+    collected_date = datetime.strptime(collect_date, "%Y%m%d").strftime("%Y-%m-%d")
+
+    new_stock = {"ticker_name": ticker_name,
+                     "collected_date": collected_date,
+                     "date": date,
+                     "open": open_variable,
+                     "high": high,
+                     "low": low,
+                     "close": close,
+                     "volume": volume}
+
+    df_new_stock = pd.DataFrame([new_stock], columns=columns)
+    stocks_collected.append(df_new_stock)
+
+stocks_df = pd.concat(stocks_collected, ignore_index=True)
+print(stocks_df)
+save_data(file_content=stocks_df, 
+          file_name="stocks.parquet", 
+          zone="refined", context="stocks", 
+          file_type="parquet")
+
+
 
     

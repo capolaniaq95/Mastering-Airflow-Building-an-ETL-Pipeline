@@ -21,6 +21,8 @@ def save_data(file_content: Union[List[Dict], Dict, List, str, pd.DataFrame], fi
             The type of file to save. Default is "csv".
     """
     file_path = f"../data_lake/{zone}/{file_type}/{context}/{file_name}"
+    if file_content is None:
+        return
     if file_type == "json":
         with open(file_path, "w", encoding="utf-8") as file:
             json.dump(file_content, file, ensure_ascii=False, indent=4)
