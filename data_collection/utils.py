@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def save_data(file_content: Union[List[Dict], Dict, List, str, pd.DataFrame], file_name: str, 
-             zone: str = "raw", context:str = "books", file_type:str = "csv"):
+             zone: str = "raw", context:str = "books", file_type:str = "csv", base_path: str = "../data_lake/") -> None:
     """
     Function that receives the dictionary containing the contents of a book and saves it in a JSON file
 
@@ -20,7 +20,7 @@ def save_data(file_content: Union[List[Dict], Dict, List, str, pd.DataFrame], fi
         file_type: str
             The type of file to save. Default is "csv".
     """
-    file_path = f"../data_lake/{zone}/{file_type}/{context}/{file_name}"
+    file_path = f"{base_path}{zone}/{file_type}/{context}/{file_name}"
     if file_content is None:
         return
     if file_type == "json":
